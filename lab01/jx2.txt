@@ -1,0 +1,136 @@
+
+jx.o:     file format elf64-x86-64
+
+Contents of section .text:
+ 0000 554889e5 897df4c7 45f80100 0000c745  UH...}..E......E
+ 0010 fc020000 008b45fc 3b45f47f 228b45fc  ......E.;E..".E.
+ 0020 0faf45f8 8945f881 7df80f27 00007e02  ..E..E..}..'..~.
+ 0030 eb0feb00 8b45fc83 c0018945 fcebd6eb  .....E.....E....
+ 0040 008b45f8 5dc39090 90909090 90909090  ..E.]...........
+ 0050 554889e5 4883ec10 48bf0000 00000000  UH..H...H.......
+ 0060 0000c745 f4000000 00b000e8 00000000  ...E............
+ 0070 48bf0000 00000000 0000488d 75f8b000  H.........H.u...
+ 0080 e8000000 008b7df8 e873ffff ff48bf00  ......}..s...H..
+ 0090 00000000 00000089 45fc8b75 fcb000e8  ........E..u....
+ 00a0 00000000 31c04883 c4105dc3           ....1.H...].    
+Contents of section .text.startup:
+ 0000 554889e5 bf000000 00e80000 0000bf00  UH..............
+ 0010 000000be 00000000 ba000000 00e80000  ................
+ 0020 00005dc3 90909090 90909090 90909090  ..].............
+ 0030 554889e5 e8c7ffff ff5dc3             UH.......].     
+Contents of section .rodata.str1.1:
+ 0000 59657300 256400                      Yes.%d.         
+Contents of section .init_array:
+ 0000 00000000 00000000                    ........        
+Contents of section .comment:
+ 0000 00636c61 6e672076 65727369 6f6e2036  .clang version 6
+ 0010 2e302e30 2d317562 756e7475 32202874  .0.0-1ubuntu2 (t
+ 0020 6167732f 52454c45 4153455f 3630302f  ags/RELEASE_600/
+ 0030 66696e61 6c2900                      final).         
+Contents of section .eh_frame:
+ 0000 14000000 00000000 017a5200 01781001  .........zR..x..
+ 0010 1b0c0708 90010000 18000000 1c000000  ................
+ 0020 00000000 24000000 00410e10 8602430d  ....$....A....C.
+ 0030 06000000 18000000 38000000 00000000  ........8.......
+ 0040 46000000 00410e10 8602430d 06000000  F....A....C.....
+ 0050 18000000 54000000 00000000 5c000000  ....T.......\...
+ 0060 00410e10 8602430d 06000000 18000000  .A....C.........
+ 0070 70000000 00000000 0b000000 00410e10  p............A..
+ 0080 8602430d 06000000                    ..C.....        
+
+Disassembly of section .text:
+
+0000000000000000 <_Z3jiei>:
+   0:	55                   	push   %rbp
+   1:	48 89 e5             	mov    %rsp,%rbp
+   4:	89 7d f4             	mov    %edi,-0xc(%rbp)
+   7:	c7 45 f8 01 00 00 00 	movl   $0x1,-0x8(%rbp)
+   e:	c7 45 fc 02 00 00 00 	movl   $0x2,-0x4(%rbp)
+  15:	8b 45 fc             	mov    -0x4(%rbp),%eax
+  18:	3b 45 f4             	cmp    -0xc(%rbp),%eax
+  1b:	7f 22                	jg     3f <_Z3jiei+0x3f>
+  1d:	8b 45 fc             	mov    -0x4(%rbp),%eax
+  20:	0f af 45 f8          	imul   -0x8(%rbp),%eax
+  24:	89 45 f8             	mov    %eax,-0x8(%rbp)
+  27:	81 7d f8 0f 27 00 00 	cmpl   $0x270f,-0x8(%rbp)
+  2e:	7e 02                	jle    32 <_Z3jiei+0x32>
+  30:	eb 0f                	jmp    41 <_Z3jiei+0x41>
+  32:	eb 00                	jmp    34 <_Z3jiei+0x34>
+  34:	8b 45 fc             	mov    -0x4(%rbp),%eax
+  37:	83 c0 01             	add    $0x1,%eax
+  3a:	89 45 fc             	mov    %eax,-0x4(%rbp)
+  3d:	eb d6                	jmp    15 <_Z3jiei+0x15>
+  3f:	eb 00                	jmp    41 <_Z3jiei+0x41>
+  41:	8b 45 f8             	mov    -0x8(%rbp),%eax
+  44:	5d                   	pop    %rbp
+  45:	c3                   	retq   
+  46:	90                   	nop
+  47:	90                   	nop
+  48:	90                   	nop
+  49:	90                   	nop
+  4a:	90                   	nop
+  4b:	90                   	nop
+  4c:	90                   	nop
+  4d:	90                   	nop
+  4e:	90                   	nop
+  4f:	90                   	nop
+
+0000000000000050 <main>:
+  50:	55                   	push   %rbp
+  51:	48 89 e5             	mov    %rsp,%rbp
+  54:	48 83 ec 10          	sub    $0x10,%rsp
+  58:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+  5f:	00 00 00 
+  62:	c7 45 f4 00 00 00 00 	movl   $0x0,-0xc(%rbp)
+  69:	b0 00                	mov    $0x0,%al
+  6b:	e8 00 00 00 00       	callq  70 <main+0x20>
+  70:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+  77:	00 00 00 
+  7a:	48 8d 75 f8          	lea    -0x8(%rbp),%rsi
+  7e:	b0 00                	mov    $0x0,%al
+  80:	e8 00 00 00 00       	callq  85 <main+0x35>
+  85:	8b 7d f8             	mov    -0x8(%rbp),%edi
+  88:	e8 73 ff ff ff       	callq  0 <_Z3jiei>
+  8d:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+  94:	00 00 00 
+  97:	89 45 fc             	mov    %eax,-0x4(%rbp)
+  9a:	8b 75 fc             	mov    -0x4(%rbp),%esi
+  9d:	b0 00                	mov    $0x0,%al
+  9f:	e8 00 00 00 00       	callq  a4 <main+0x54>
+  a4:	31 c0                	xor    %eax,%eax
+  a6:	48 83 c4 10          	add    $0x10,%rsp
+  aa:	5d                   	pop    %rbp
+  ab:	c3                   	retq   
+
+Disassembly of section .text.startup:
+
+0000000000000000 <__cxx_global_var_init>:
+   0:	55                   	push   %rbp
+   1:	48 89 e5             	mov    %rsp,%rbp
+   4:	bf 00 00 00 00       	mov    $0x0,%edi
+   9:	e8 00 00 00 00       	callq  e <__cxx_global_var_init+0xe>
+   e:	bf 00 00 00 00       	mov    $0x0,%edi
+  13:	be 00 00 00 00       	mov    $0x0,%esi
+  18:	ba 00 00 00 00       	mov    $0x0,%edx
+  1d:	e8 00 00 00 00       	callq  22 <__cxx_global_var_init+0x22>
+  22:	5d                   	pop    %rbp
+  23:	c3                   	retq   
+  24:	90                   	nop
+  25:	90                   	nop
+  26:	90                   	nop
+  27:	90                   	nop
+  28:	90                   	nop
+  29:	90                   	nop
+  2a:	90                   	nop
+  2b:	90                   	nop
+  2c:	90                   	nop
+  2d:	90                   	nop
+  2e:	90                   	nop
+  2f:	90                   	nop
+
+0000000000000030 <_GLOBAL__sub_I_jx.cpp>:
+  30:	55                   	push   %rbp
+  31:	48 89 e5             	mov    %rsp,%rbp
+  34:	e8 c7 ff ff ff       	callq  0 <__cxx_global_var_init>
+  39:	5d                   	pop    %rbp
+  3a:	c3                   	retq   

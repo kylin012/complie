@@ -1,0 +1,35 @@
+digraph "Call graph" {
+	label="Call graph";
+
+	Node0x55e452653420 [shape=record,label="{external node}"];
+	Node0x55e452653420 -> Node0x55e4526534c0;
+	Node0x55e452653420 -> Node0x55e452653590;
+	Node0x55e452653420 -> Node0x55e452653600;
+	Node0x55e452653420 -> Node0x55e4526536a0;
+	Node0x55e452653420 -> Node0x55e452653710;
+	Node0x55e452653420 -> Node0x55e452653780;
+	Node0x55e452653420 -> Node0x55e4526537f0;
+	Node0x55e452653420 -> Node0x55e452653860;
+	Node0x55e452653420 -> Node0x55e452653d10;
+	Node0x55e452653420 -> Node0x55e452653db0;
+	Node0x55e452653db0 [shape=record,label="{_GLOBAL__sub_I_jx.cpp}"];
+	Node0x55e452653db0 -> Node0x55e4526534c0;
+	Node0x55e452653db0 -> Node0x55e452653600;
+	Node0x55e4526534c0 [shape=record,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55e4526534c0 -> Node0x55e452653450;
+	Node0x55e452653590 [shape=record,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55e452653590 -> Node0x55e452653450;
+	Node0x55e452653600 [shape=record,label="{__cxa_atexit}"];
+	Node0x55e452653600 -> Node0x55e452653450;
+	Node0x55e4526536a0 [shape=record,label="{_Z3jiei}"];
+	Node0x55e452653710 [shape=record,label="{llvm.lifetime.start.p0i8}"];
+	Node0x55e452653780 [shape=record,label="{llvm.lifetime.end.p0i8}"];
+	Node0x55e4526537f0 [shape=record,label="{main}"];
+	Node0x55e4526537f0 -> Node0x55e452653860;
+	Node0x55e4526537f0 -> Node0x55e452653d10;
+	Node0x55e4526537f0 -> Node0x55e452653860;
+	Node0x55e452653860 [shape=record,label="{printf}"];
+	Node0x55e452653860 -> Node0x55e452653450;
+	Node0x55e452653d10 [shape=record,label="{scanf}"];
+	Node0x55e452653d10 -> Node0x55e452653450;
+}

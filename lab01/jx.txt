@@ -1,0 +1,11 @@
+0000000000000030 t _GLOBAL__sub_I_jx.cpp
+0000000000000000 T _Z3jiei
+                 U _ZNSt8ios_base4InitC1Ev
+                 U _ZNSt8ios_base4InitD1Ev
+0000000000000000 b _ZStL8__ioinit
+                 U __cxa_atexit
+0000000000000000 t __cxx_global_var_init
+                 U __dso_handle
+0000000000000050 T main
+                 U printf
+                 U scanf
