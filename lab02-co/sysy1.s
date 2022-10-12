@@ -1,22 +1,22 @@
-	.text
+	.text	@程序由对全局变量var1的声明开始
 	.global	var1
 	.data
 	.align	2
 	.type	var1, %object
 	.size	var1, 4
-var1:
+var1:	@全局变量
 	.word	1
 	.align	2
 	.type	var2, %object
 	.size	var2, 4
-var2:
+var2:	@静态变量
 	.word	2
 	.global	var3
 	.section	.rodata
 	.align	2
 	.type	var3, %object
 	.size	var3, 4
-var3:
+var3:	@常量
 	.word	3
 	.text
 	.align	1
@@ -26,7 +26,7 @@ var3:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	if_stmt, %function
-if_stmt:
+if_stmt:	@if语句
 	push	{r7}
 	add	r7, sp, #0
 	ldr	r3, .L5
@@ -68,7 +68,7 @@ if_stmt:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	for_stmt, %function
-for_stmt:
+for_stmt:	@for语句
 	push	{r7}
 	sub	sp, sp, #12
 	add	r7, sp, #0
@@ -106,7 +106,7 @@ for_stmt:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	while_stmt, %function
-while_stmt:
+while_stmt:		@while语句
 	push	{r7}
 	add	r7, sp, #0
 	b	.L13
@@ -141,7 +141,7 @@ while_stmt:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	break_continue, %function
-break_continue:
+break_continue:		@break&continue语句
 	push	{r7}
 	add	r7, sp, #0
 .L19:
@@ -181,7 +181,7 @@ break_continue:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	return_stmt, %function
-return_stmt:
+return_stmt:	@return语句
 	push	{r7}
 	add	r7, sp, #0
 	movs	r3, #1
@@ -199,7 +199,7 @@ return_stmt:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	expr, %function
-expr:
+expr:	@算术运算+关系运算+赋值运算+逻辑运算+位运算
 	push	{r7, lr}
 	sub	sp, sp, #16
 	add	r7, sp, #0
@@ -208,7 +208,7 @@ expr:
 	add	r3, pc
 	ldr	r3, [r3]
 	movs	r2, #3
-	add	r3, r3, r2
+	add	r3, r3, r2	@加
 	ldr	r2, .L32+4
 .LPIC10:
 	add	r2, pc
@@ -218,7 +218,7 @@ expr:
 	add	r3, pc
 	ldr	r3, [r3]
 	movs	r2, #3
-	subs	r3, r3, r2
+	subs	r3, r3, r2	@减
 	ldr	r2, .L32+12
 .LPIC12:
 	add	r2, pc
@@ -228,7 +228,7 @@ expr:
 	add	r3, pc
 	ldr	r3, [r3]
 	movs	r2, #3
-	mul	r3, r2, r3
+	mul	r3, r2, r3	@乘
 	ldr	r2, .L32+20
 .LPIC14:
 	add	r2, pc
@@ -240,7 +240,7 @@ expr:
 	movs	r2, #3
 	mov	r1, r2
 	mov	r0, r3
-	bl	__aeabi_idiv(PLT)
+	bl	__aeabi_idiv(PLT)	@除
 	mov	r3, r0
 	mov	r2, r3
 	ldr	r3, .L32+28
@@ -254,7 +254,7 @@ expr:
 	movs	r2, #3
 	mov	r1, r2
 	mov	r0, r3
-	bl	__aeabi_idivmod(PLT)
+	bl	__aeabi_idivmod(PLT)	@取模
 	mov	r3, r1
 	mov	r2, r3
 	ldr	r3, .L32+36
@@ -265,7 +265,7 @@ expr:
 .LPIC19:
 	add	r3, pc
 	ldr	r3, [r3]
-	negs	r3, r3
+	negs	r3, r3	@取负
 	ldr	r2, .L32+44
 .LPIC20:
 	add	r2, pc
@@ -278,8 +278,8 @@ expr:
 .LPIC22:
 	add	r3, pc
 	ldr	r3, [r3]
-	cmp	r2, r3
-	ite	eq
+	cmp	r2, r3	
+	ite	eq	@相等
 	moveq	r3, #1
 	movne	r3, #0
 	uxtb	r3, r3
@@ -293,7 +293,7 @@ expr:
 	add	r3, pc
 	ldr	r3, [r3]
 	cmp	r2, r3
-	ite	gt
+	ite	gt	@大于
 	movgt	r3, #1
 	movle	r3, #0
 	uxtb	r3, r3
@@ -307,7 +307,7 @@ expr:
 	add	r3, pc
 	ldr	r3, [r3]
 	cmp	r2, r3
-	ite	lt
+	ite	lt	@小于
 	movlt	r3, #1
 	movge	r3, #0
 	uxtb	r3, r3
@@ -321,7 +321,7 @@ expr:
 	add	r3, pc
 	ldr	r3, [r3]
 	cmp	r2, r3
-	ite	ge
+	ite	ge	@大于等于
 	movge	r3, #1
 	movlt	r3, #0
 	uxtb	r3, r3
@@ -335,7 +335,7 @@ expr:
 	add	r3, pc
 	ldr	r3, [r3]
 	cmp	r2, r3
-	ite	le
+	ite	le	@小于等于
 	movle	r3, #1
 	movgt	r3, #0
 	uxtb	r3, r3
@@ -349,18 +349,18 @@ expr:
 	add	r3, pc
 	ldr	r3, [r3]
 	cmp	r2, r3
-	ite	ne
+	ite	ne		@不等
 	movne	r3, #1
 	moveq	r3, #0
 	uxtb	r3, r3
 	str	r3, [r7]
-	movs	r3, #1
+	movs	r3, #1	@赋值运算
 	str	r3, [r7, #4]
 	movs	r3, #0
 	str	r3, [r7, #8]
 	mov	r3, #256
-	str	r3, [r7, #12]
-	ldr	r3, [r7, #4]
+	str	r3, [r7, #12]	
+	ldr	r3, [r7, #4]	@与运算
 	cmp	r3, #0
 	beq	.L27
 	ldr	r3, [r7, #8]
@@ -372,7 +372,7 @@ expr:
 	movs	r3, #0
 .L28:
 	str	r3, [r7]
-	ldr	r3, [r7, #4]
+	ldr	r3, [r7, #4]	@或运算
 	cmp	r3, #0
 	bne	.L29
 	ldr	r3, [r7, #8]
@@ -385,7 +385,7 @@ expr:
 	movs	r3, #0
 .L31:
 	str	r3, [r7]
-	ldr	r3, [r7, #4]
+	ldr	r3, [r7, #4]	@非运算
 	cmp	r3, #0
 	ite	eq
 	moveq	r3, #1
@@ -393,10 +393,10 @@ expr:
 	uxtb	r3, r3
 	str	r3, [r7]
 	ldr	r3, [r7, #4]
-	lsls	r3, r3, #4
+	lsls	r3, r3, #4	@按位左移
 	str	r3, [r7]
 	ldr	r3, [r7, #12]
-	asrs	r3, r3, #4
+	asrs	r3, r3, #4	@按位右移
 	str	r3, [r7]
 	nop
 	adds	r7, r7, #16
@@ -463,7 +463,7 @@ expr:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	array_decl_access, %function
-array_decl_access:
+array_decl_access:	@数组
 	push	{r4, r5, r6, r7, lr}
 	sub	sp, sp, #92
 	add	r7, sp, #0
@@ -524,7 +524,7 @@ array_decl_access:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	ptr, %function
-ptr:
+ptr:	@指针
 	push	{r7, lr}
 	sub	sp, sp, #16
 	add	r7, sp, #0
@@ -564,7 +564,7 @@ ptr:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	callee_noreturn, %function
-callee_noreturn:
+callee_noreturn:	@无参无返函数
 	push	{r7}
 	add	r7, sp, #0
 	nop
@@ -579,7 +579,7 @@ callee_noreturn:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	callee_void, %function
-callee_void:
+callee_void:	@无参有返函数
 	push	{r7}
 	add	r7, sp, #0
 	movs	r3, #1
@@ -595,7 +595,7 @@ callee_void:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	callee_args, %function
-callee_args:
+callee_args:	@有参有返函数
 	push	{r7}
 	sub	sp, sp, #12
 	add	r7, sp, #0
@@ -615,7 +615,7 @@ callee_args:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	caller, %function
-caller:
+caller:		@函数调用
 	push	{r7, lr}
 	sub	sp, sp, #8
 	add	r7, sp, #0
@@ -638,35 +638,35 @@ caller:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	float_impl, %function
-float_impl:
+float_impl:		@浮点数
 	push	{r7}
 	sub	sp, sp, #20
 	add	r7, sp, #0
-	mov	r3, #1065353216
+	mov	r3, #1065353216	@浮点数赋值
 	str	r3, [r7]	
 	mov	r3, #1073741824
 	str	r3, [r7, #4]	
 	vldr.32	s14, [r7]
 	vldr.32	s15, [r7, #4]
-	vadd.f32	s15, s14, s15
+	vadd.f32	s15, s14, s15	@浮点数加法
 	vstr.32	s15, [r7, #8]
 	vldr.32	s14, [r7]
 	vldr.32	s15, [r7, #4]
-	vsub.f32	s15, s14, s15
+	vsub.f32	s15, s14, s15	@浮点数减法
 	vstr.32	s15, [r7, #8]
 	vldr.32	s14, [r7]
 	vldr.32	s15, [r7, #4]
-	vmul.f32	s15, s14, s15
+	vmul.f32	s15, s14, s15	@浮点数乘法
 	vstr.32	s15, [r7, #8]
 	vldr.32	s13, [r7]
 	vldr.32	s14, [r7, #4]
-	vdiv.f32	s15, s13, s14
+	vdiv.f32	s15, s13, s14	@浮点数除法
 	vstr.32	s15, [r7, #8]
 	vldr.32	s14, [r7]
 	vldr.32	s15, [r7, #4]
 	vcmp.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	ite	eq
+	ite	eq	@浮点数相等
 	moveq	r3, #1
 	movne	r3, #0
 	uxtb	r3, r3
@@ -675,7 +675,7 @@ float_impl:
 	vldr.32	s15, [r7, #4]
 	vcmpe.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	ite	gt
+	ite	gt	@浮点数大于
 	movgt	r3, #1
 	movle	r3, #0
 	uxtb	r3, r3
@@ -684,7 +684,7 @@ float_impl:
 	vldr.32	s15, [r7, #4]
 	vcmpe.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	ite	mi
+	ite	mi	@浮点数小于
 	movmi	r3, #1
 	movpl	r3, #0
 	uxtb	r3, r3
@@ -693,7 +693,7 @@ float_impl:
 	vldr.32	s15, [r7, #4]
 	vcmpe.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	ite	ge
+	ite	ge	@浮点数大于等于
 	movge	r3, #1
 	movlt	r3, #0
 	uxtb	r3, r3
@@ -702,7 +702,7 @@ float_impl:
 	vldr.32	s15, [r7, #4]
 	vcmpe.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	ite	ls
+	ite	ls	@浮点数小于等于
 	movls	r3, #1
 	movhi	r3, #0
 	uxtb	r3, r3
@@ -711,7 +711,7 @@ float_impl:
 	vldr.32	s15, [r7, #4]
 	vcmp.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	ite	ne
+	ite	ne	@浮点数不等
 	movne	r3, #1
 	moveq	r3, #0
 	uxtb	r3, r3
@@ -737,7 +737,7 @@ float_impl:
 	.thumb_func
 	.fpu vfpv3-d16
 	.type	main, %function
-main:
+main:	@主函数
 	push	{r7, lr}
 	add	r7, sp, #0
 	ldr	r3, .L51
@@ -748,7 +748,7 @@ main:
 .LPIC38:
 	add	r3, pc
 	mov	r0, r3
-	bl	__isoc99_scanf(PLT)
+	bl	__isoc99_scanf(PLT)		@库函数scanf调用
 	ldr	r3, .L51+8
 .LPIC39:
 	add	r3, pc
@@ -758,7 +758,7 @@ main:
 .LPIC40:
 	add	r3, pc
 	mov	r0, r3
-	bl	printf(PLT)
+	bl	printf(PLT)		@库函数printf调用
 	movs	r3, #0
 	mov	r0, r3
 	pop	{r7, pc}
@@ -769,6 +769,6 @@ main:
 	.word	.LC2-(.LPIC38+4)
 	.word	var1-(.LPIC39+4)
 	.word	.LC3-(.LPIC40+4)
-	.size	main, .-main
-	.ident	"GCC: (Ubuntu/Linaro 7.5.0-3ubuntu1~18.04) 7.5.0"
+	.size	main, .-main	@main函数结束，下方为仿写的结尾信息
+	.ident	"GCC: (Ubuntu/Linaro 7.5.0-3ubuntu1~18.04) 7.5.0"	
 	.section	.note.GNU-stack,"",%progbits
